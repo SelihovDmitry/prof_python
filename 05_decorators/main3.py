@@ -1,25 +1,6 @@
-from datetime import datetime
+
 import requests
-
-def logger(path):
-
-    def __logger(old_function):
-        def new_function(*args, **kwargs):
-            with open(path, 'a') as log:
-                log.write(f'{datetime.now()} : вызвана функция {old_function.__name__}\n')
-                log.write(f'\t с аргументами {args} и {kwargs}\n')
-
-            result = old_function(*args, **kwargs)
-
-            with open(path, 'a') as log:
-                log.write(f'\t результат выполнения : {result}\n')
-
-            return result
-
-        return new_function
-
-    return __logger
-
+from main2 import logger
 
 @logger('herolog.txt')
 def smartest_hero(heroes): # получаем список героев из которых надо выбрать самого умного (intelligence)
